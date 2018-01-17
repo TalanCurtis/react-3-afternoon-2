@@ -14,13 +14,85 @@ class NewUser extends Component{
     }
     
     // insert addUser
+    // addUser(){
+    //     axios.post(`/api/users`, this.state)
+    //     .then((res)=>{
+    //         console.log(res);
+    //         let user = res.data;
+    //         this.props.history.push(`/user/${user.id}`)
+    //     })
+    // }
+    addUser(){
+        axios.post('/api/users', this.state).then(response=>{
+            console.log(response)
+            let user = response.data
+            this.props.history.push(`/user/${user.id}`)
+        })
+    }
 
+    updateUser(){
+        let id = this.props.match.params.id        
+        axios.put(`/api/user/${id}`, this.state).then(response=>{
+            console.log(response)
+            let user = response.data
+            this.props.history.push(`/user/${user.id}`)
+        })
+    }
 
-    // insert updateUser    
+    deleteUser(){
+        let id = this.props.match.params.id
+        axios.delete(`api/user/${id}`).then(response=>{
+            this.props.history.push(`/search`)
+        })
+    }
+
+    // updateUser(){
+    //     let id = this.props.match.params.id 
+    //     axios.put(`/api/users/${id}`, this.state)
+    //     .then((res)=>{
+    //         console.log(res)
+    //         let user = res.data;
+    //         this.props.history.push(`/user/${id}`)
+    //     })
+    // }
+
+    // insert updateUser   
+    // updateUser(){
+    //     // let body = {
+    //     //     name: this.state.name,
+    //     //     img: this.state.img,
+    //     //     desc: this.state.desc
+    //     // }
+    //     let id = this.props.match.params.id 
+    //     axios.put(`/api/users/${id}`, this.state)
+    //     .then((res)=>{
+    //         let user = res.data
+    //         this.props.history.push(`/user/${user.id}`)
+    //         // this.setState({
+    //         //     name: res.data.name,
+    //         //     img: res.data.img,
+    //         //     desc: res.data.desc
+    //         // })
+    //     })
+    // }
+    // updateUser(){
+    //     let id = this.props.match.params.id        
+    //     axios.put(`/api/user/${id}`, this.state).then(response=>{
+    //         console.log(response)
+    //         let user = response.data
+    //         this.props.history.push(`/user/${id}`)
+    //     })
+    // }
 
 
     // insert deleteUser
-
+    // deleteUser(){
+    //     let id =this.props.match.params.id
+    //     axios.delete(`api/user/${id}`)
+    //     .then((res)=>{
+    //         this.props.history.push('/')
+    //     })
+    // }
 
     render(){
         return(
